@@ -11,6 +11,12 @@ const app = express();
 
 
 app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Permitir qualquer origem
+    res.setHeader('Access-Control-Allow-Methods', '*'); // Permitir qualquer método (GET, POST, etc.)
+    res.setHeader('Access-Control-Allow-Headers', '*'); // Permitir qualquer cabeçalho
+    next();
+  });
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use('/user', userRoute);

@@ -79,7 +79,7 @@ router.post('/forgotPassword', (req,res) =>{
                     from: process.env.EMAIL,
                     to: results[0].email,
                     subject: 'Senha do CafePit',
-                    html: '<p><b>Seus detalhes de login no CaféPit</b><br><b>Email: </b>'+results[0].email+'<br><b>Senha: </b>'+results[0].password+'<br><a href="htpp://localhost:4200/">Aperte aqui para logar</a></p>'
+                    html: '<p><b>Seus detalhes de login no CaféPit</b><br><b>Email: </b>'+results[0].email+'<br><b>Senha: </b>'+results[0].password+'<br><a href="http://localhost:4200/">Aperte aqui para logar</a></p>'
                 };
                 transporter.sendMail(mailOptions,function(error,info){
                     if(error) {
@@ -98,7 +98,7 @@ router.post('/forgotPassword', (req,res) =>{
 })
 
 router.get('/get', auth.authenticateToken, checkRole.checkRole, (req,res)=> {
-    var query = "select id,name,email,contactNumber status from user where role = 'user'"
+    var query = "select id,name,email,contactNumber, status from user where role = 'user'"
     connection.query(query, (err,results) => {
         if(!err){
             return res.status(200).json(results);

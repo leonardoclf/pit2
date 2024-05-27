@@ -31,6 +31,7 @@ export class ManageUserComponent implements OnInit {
     this.userService.getUsers().subscribe((response:any)=>{
       this.ngxService.stop();
       this.dataSource = new MatTableDataSource(response);
+      console.log(this.dataSource);
     }, (error)=>{
       this.ngxService.stop();
       if(error.error?.message){
